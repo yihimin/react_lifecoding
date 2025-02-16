@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { Component } from "react";
-//import Subject from "./components/Subject";
+import Subject from "./components/Subject";
 import TOC from "./components/TOC";
 import Content from "./components/Content";
 
@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: "welcome",
+      mode: "read",
       subject: { title: "WEB", sub: "world wide web!" },
       welcome: { title: "Welcome", desc: "Hello, React!!" },
       contents: [
@@ -33,11 +33,14 @@ class App extends Component {
     }
     return (
       <div className="App">
-        {/* <Subject
+        <Subject
           title={this.state.subject.title}
           sub={this.state.subject.sub}
-        ></Subject> */}
-        <header>
+          onChangePage={function () {
+            this.setState({ mode: "welcome" });
+          }.bind(this)}
+        ></Subject>
+        {/* <header>
           <h1>
             <a
               href="/"
@@ -54,7 +57,7 @@ class App extends Component {
             </a>
           </h1>
           {this.state.subject.sub}
-        </header>
+        </header> */}
         <TOC data={this.state.contents}></TOC>
         <Content title={_title} desc={_desc}></Content>
       </div>
